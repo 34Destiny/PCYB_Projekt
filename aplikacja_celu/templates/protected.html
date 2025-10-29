@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCYB Forum - Główna</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forum.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">PCYB Forum</div>
+            <div class="user-info">
+                <div class="user-avatar">A</div>
+                <span>Witaj, <strong>admin</strong>!</span>
+                <a href="/logout" class="logout-btn">Wyloguj</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="welcome-banner">
+            <h1>Witaj w PCYB Forum!</h1>
+        </div>
+
+        <div class="forum-stats">
+            <div class="stat-card">
+                <div class="stat-number">15,842</div>
+                <div class="stat-label">Użytkowników</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2,347</div>
+                <div class="stat-label">Tematów</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">48,512</div>
+                <div class="stat-label">Postów</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">127</div>
+                <div class="stat-label">Online teraz</div>
+            </div>
+        </div>
+
+        <div class="forum-sections">
+            <div class="topics-section">
+                <div class="section-header">🔥 Najgorętsze tematy</div>
+                
+                <div class="topic">
+                    <div class="topic-icon">🐍</div>
+                    <div class="topic-content">
+                        <div class="topic-title">Python 3.12 - nowe funkcje i wydajność</div>
+                        <div class="topic-meta">przez <strong>python_master</strong> • 2 godziny temu</div>
+                    </div>
+                    <div class="topic-stats">
+                        <div>247 odpowiedzi</div>
+                        <div>1.2k wyświetleń</div>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <div class="topic-icon">⚛️</div>
+                    <div class="topic-content">
+                        <div class="topic-title">React 18 vs Vue 3 - które wybrać w 2025?</div>
+                        <div class="topic-meta">przez <strong>frontend_guru</strong> • 4 godziny temu</div>
+                    </div>
+                    <div class="topic-stats">
+                        <div>89 odpowiedzi</div>
+                        <div>892 wyświetleń</div>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <div class="topic-icon">🚀</div>
+                    <div class="topic-content">
+                        <div class="topic-title">Kubernetes w praktyce - tips & tricks</div>
+                        <div class="topic-meta">przez <strong>devops_ninja</strong> • 6 godzin temu</div>
+                    </div>
+                    <div class="topic-stats">
+                        <div>156 odpowiedzi</div>
+                        <div>2.1k wyświetleń</div>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <div class="topic-icon">🔒</div>
+                    <div class="topic-content">
+                        <div class="topic-title">Cybersecurity - najnowsze zagrożenia 2025</div>
+                        <div class="topic-meta">przez <strong>sec_expert</strong> • 8 godzin temu</div>
+                    </div>
+                    <div class="topic-stats">
+                        <div>203 odpowiedzi</div>
+                        <div>3.4k wyświetleń</div>
+                    </div>
+                </div>
+
+                <div class="topic">
+                    <div class="topic-icon">💾</div>
+                    <div class="topic-content">
+                        <div class="topic-title">Bazy danych: PostgreSQL vs MongoDB</div>
+                        <div class="topic-meta">przez <strong>db_wizard</strong> • 1 dzień temu</div>
+                    </div>
+                    <div class="topic-stats">
+                        <div>74 odpowiedzi</div>
+                        <div>658 wyświetleń</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <div class="sidebar-header">Użytkownicy online (127)</div>
+                    <div class="sidebar-content">
+                        <ul class="online-users">
+                            <li class="online-user">
+                                <span class="user-status"></span>
+                                <strong>admin</strong> (Ty)
+                            </li>
+                            <li class="online-user">
+                                <span class="user-status"></span>
+                                python_master
+                            </li>
+                            <li class="online-user">
+                                <span class="user-status"></span>
+                                frontend_guru
+                            </li>
+                            <li class="online-user">
+                                <span class="user-status"></span>
+                                devops_ninja
+                            </li>
+                            <li class="online-user">
+                                <span class="user-status"></span>
+                                sec_expert
+                            </li>
+                            <li class="online-user">
+                                <span class="user-status"></span>
+                                + 122 innych...
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

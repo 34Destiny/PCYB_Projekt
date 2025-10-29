@@ -1,0 +1,258 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: #f8f9fa; 
+    line-height: 1.6; 
+}
+
+.header { 
+    background: #2c3e50; 
+    color: white; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+
+.header-content { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 1rem 2rem; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.logo { 
+    font-size: 1.8rem; 
+    font-weight: bold; 
+}
+
+.user-info { 
+    display: flex; 
+    align-items: center; 
+    gap: 1rem; 
+}
+
+.user-avatar { 
+    width: 40px; 
+    height: 40px; 
+    background: #3498db; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: bold; 
+}
+
+.logout-btn { 
+    background: #e74c3c; 
+    color: white; 
+    text-decoration: none; 
+    padding: 0.5rem 1rem; 
+    border-radius: 4px; 
+}
+
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 2rem; 
+}
+
+.welcome-banner { 
+    background: linear-gradient(135deg, #3498db, #2980b9); 
+    color: white; 
+    padding: 2rem; 
+    border-radius: 12px; 
+    margin-bottom: 2rem; 
+    text-align: center; 
+}
+
+.welcome-banner h1 { 
+    margin-bottom: 0.5rem; 
+}
+
+.forum-stats { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 1rem; 
+    margin-bottom: 2rem; 
+}
+
+.stat-card { 
+    background: white; 
+    padding: 1.5rem; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+    text-align: center; 
+}
+
+.stat-number { 
+    font-size: 2rem; 
+    font-weight: bold; 
+    color: #3498db; 
+}
+
+.stat-label { 
+    color: #7f8c8d; 
+    margin-top: 0.5rem; 
+}
+
+.forum-sections { 
+    display: grid; 
+    grid-template-columns: 2fr 1fr; 
+    gap: 2rem; 
+}
+
+.topics-section { 
+    background: white; 
+    border-radius: 12px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+    overflow: hidden; 
+}
+
+.section-header { 
+    background: #34495e; 
+    color: white; 
+    padding: 1rem; 
+    font-weight: bold; 
+}
+
+.topic { 
+    display: flex; 
+    align-items: center; 
+    padding: 1rem; 
+    border-bottom: 1px solid #ecf0f1; 
+    transition: background-color 0.2s; 
+}
+
+.topic:hover { 
+    background: #f8f9fa; 
+}
+
+.topic-icon { 
+    width: 50px; 
+    height: 50px; 
+    background: #3498db; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-right: 1rem; 
+    font-size: 1.2rem; 
+}
+
+.topic-content { 
+    flex: 1; 
+}
+
+.topic-title { 
+    font-weight: bold; 
+    color: #2c3e50; 
+    margin-bottom: 0.25rem; 
+}
+
+.topic-meta { 
+    color: #7f8c8d; 
+    font-size: 0.9rem; 
+}
+
+.topic-stats { 
+    text-align: center; 
+    color: #7f8c8d; 
+    font-size: 0.9rem; 
+}
+
+.sidebar { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+}
+
+.sidebar-card { 
+    background: white; 
+    border-radius: 12px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+    overflow: hidden; 
+}
+
+.sidebar-header { 
+    background: #34495e; 
+    color: white; 
+    padding: 1rem; 
+    font-weight: bold; 
+}
+
+.sidebar-content { 
+    padding: 1rem; 
+}
+
+.online-users { 
+    list-style: none; 
+}
+
+.online-user { 
+    display: flex; 
+    align-items: center; 
+    padding: 0.5rem 0; 
+    border-bottom: 1px solid #ecf0f1; 
+}
+
+.online-user:last-child { 
+    border-bottom: none; 
+}
+
+.user-status { 
+    width: 12px; 
+    height: 12px; 
+    background: #27ae60; 
+    border-radius: 50%; 
+    margin-right: 0.5rem; 
+}
+
+/* Sekcja testowa - ukryta na dole strony */
+.test-section { 
+    margin-top: 3rem; 
+    padding: 2rem; 
+    background: #fff3cd; 
+    border-radius: 8px; 
+    border-left: 4px solid #ffc107; 
+}
+
+.test-section h3 { 
+    color: #856404; 
+    margin-bottom: 1rem; 
+}
+
+.payload-container { 
+    background: #f8f9fa; 
+    padding: 1rem; 
+    border-radius: 4px; 
+    font-family: monospace; 
+    margin: 1rem 0; 
+}
+
+.copy-btn { 
+    background: #007bff; 
+    color: white; 
+    border: none; 
+    padding: 0.5rem 1rem; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    margin-left: 1rem; 
+}
+
+.copy-btn:hover { 
+    background: #0056b3; 
+}
+
+@media (max-width: 768px) {
+    .forum-sections { 
+        grid-template-columns: 1fr; 
+    }
+    .forum-stats { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}

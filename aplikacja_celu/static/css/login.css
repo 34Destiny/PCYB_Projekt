@@ -1,0 +1,131 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: #f8f9fa; 
+}
+
+.header { 
+    background: #2c3e50; 
+    color: white; 
+    padding: 1rem 0; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+
+.header-content { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 2rem; 
+    display: flex; 
+    align-items: center; 
+}
+
+.logo { 
+    font-size: 1.8rem; 
+    font-weight: bold; 
+}
+
+.tagline { 
+    margin-left: 1rem; 
+    opacity: 0.8; 
+    font-size: 0.9rem; 
+}
+
+.main-content { 
+    max-width: 500px; 
+    margin: 3rem auto; 
+    padding: 0 2rem; 
+}
+
+.login-card { 
+    background: white; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+    overflow: hidden; 
+}
+
+.login-header { 
+    background: linear-gradient(135deg, #3498db, #2980b9); 
+    color: white; 
+    padding: 2rem; 
+    text-align: center; 
+}
+
+.login-header h2 { 
+    font-size: 1.5rem; 
+    margin-bottom: 0.5rem; 
+}
+
+.login-header p { 
+    opacity: 0.9; 
+}
+
+.login-form { 
+    padding: 2rem; 
+}
+
+.form-group { 
+    margin-bottom: 1.5rem; 
+}
+
+.form-group label { 
+    display: block; 
+    margin-bottom: 0.5rem; 
+    color: #2c3e50; 
+    font-weight: 500; 
+}
+
+.form-group input { 
+    width: 100%; 
+    padding: 0.8rem; 
+    border: 2px solid #e9ecef; 
+    border-radius: 6px; 
+    font-size: 1rem; 
+    transition: border-color 0.3s; 
+}
+
+.form-group input:focus { 
+    outline: none; 
+    border-color: #3498db; 
+}
+
+.login-btn { 
+    width: 100%; 
+    padding: 0.8rem; 
+    background: linear-gradient(135deg, #3498db, #2980b9); 
+    color: white; 
+    border: none; 
+    border-radius: 6px; 
+    font-size: 1rem; 
+    font-weight: 500; 
+    cursor: pointer; 
+    transition: transform 0.2s; 
+}
+
+.login-btn:hover { 
+    transform: translateY(-1px); 
+}
+
+.error { 
+    background: #e74c3c; 
+    color: white; 
+    padding: 1rem; 
+    margin-bottom: 1rem; 
+    border-radius: 6px; 
+    text-align: center; 
+}
+
+.footer { 
+    text-align: center; 
+    margin-top: 3rem; 
+    color: #7f8c8d; 
+}
+
+.footer a { 
+    color: #3498db; 
+    text-decoration: none; 
+}
