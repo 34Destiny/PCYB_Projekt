@@ -1,21 +1,4 @@
 #!/usr/bin/env python3
-"""
-Session Hijacking Demonstration Script
-PCYB Cybersecurity Project - Educational Purpose Only
-
-This script demonstrates session hijacking vulnerabilities in the target application.
-The application has intentional security weaknesses for educational purposes:
-1. Session cookie without HttpOnly flag (httponly=False)
-2. Predictable session token value
-3. No CSRF protection
-4. Cookie transmitted without Secure flag
-
-Attack vectors demonstrated:
-- Direct cookie theft/injection
-- Predictable session token exploitation
-- Session replay attack
-"""
-
 import requests
 import sys
 from urllib.parse import urljoin
