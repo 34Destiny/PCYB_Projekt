@@ -190,55 +190,7 @@ def main():
     # Extract session info
     hijacker.extract_session_info()
     
-    # Summary
-    print("\n" + "="*60)
-    print("VULNERABILITY SUMMARY")
-    print("="*60)
-    print("""
-The target application has the following vulnerabilities:
-
-1. ❌ Predictable Session Token
-   - Hardcoded token value in source code
-   - No randomization or cryptographic generation
-   - Token: 'admin_session_token_pcyb'
-
-2. ❌ Cookie Without HttpOnly Flag
-   - httponly=False allows JavaScript access
-   - Vulnerable to XSS-based cookie theft
-   - document.cookie can read the session token
-
-3. ❌ Cookie Without Secure Flag
-   - secure=False allows transmission over HTTP
-   - Vulnerable to network sniffing/MITM attacks
-   - Cookie can be intercepted on unencrypted connections
-
-4. ❌ No Session Validation
-   - No IP address binding
-   - No User-Agent validation
-   - No session timeout mechanism
-   - Stolen sessions remain valid indefinitely
-
-5. ❌ Same-Site Cookie Policy Too Permissive
-   - samesite='Lax' allows some cross-site requests
-   - Should use 'Strict' for sensitive operations
-
-RECOMMENDED FIXES:
-------------------
-✓ Generate cryptographically random session tokens
-✓ Set httponly=True to prevent JavaScript access
-✓ Set secure=True to enforce HTTPS-only transmission
-✓ Implement proper session validation (IP, User-Agent)
-✓ Add session timeout and regeneration on sensitive actions
-✓ Use samesite='Strict' for better CSRF protection
-✓ Implement CSRF tokens for state-changing operations
-✓ Add rate limiting for login attempts
-✓ Log and monitor for suspicious session activity
-    """)
-    
     print("\n[✓] Demonstration completed successfully" if success else "\n[!] Some demonstrations failed")
-    print("[i] This script is for educational purposes only")
-    print("[i] Only use on systems you own or have explicit permission to test\n")
-
 
 if __name__ == "__main__":
     main()
