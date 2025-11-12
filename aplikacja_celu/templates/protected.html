@@ -78,7 +78,7 @@
                                 <span class="post-dot">·</span>
                                 <span class="post-time">{{ post.timestamp }}</span>
                             </div>
-                            <div class="post-text">{{ post.content }}</div>
+                            <div class="post-text">{{ post.content | safe }}</div>
                             <div class="post-actions-bar">
                                 <div class="action-btn">
                                     <span class="action-icon">❤️</span>

@@ -1,10 +1,6 @@
-/**
- * OBFUSCATED ONE-LINE PAYLOADS - PCYB Cybersecurity Project
- * Ultra-short, hard-to-read cookie stealers for browser console
- * 
- * ⚠️ Educational purposes only!
- * These show how attackers make payloads harder to analyze
- */
+// ⚠️ WARNING: These are MALICIOUS scripts for educational purposes only!
+
+
 
 // ============================================================
 // ORIGINAL (readable) - 96 chars

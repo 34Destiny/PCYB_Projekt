@@ -1,21 +1,5 @@
-/**
- * DEVTOOLS CONSOLE PAYLOADS - PCYB Cybersecurity Project
- * Educational demonstration of malicious JavaScript payloads
- * 
- * ⚠️ WARNING: These are MALICIOUS scripts for educational purposes only!
- * They demonstrate how attackers trick users into running harmful code in browser console.
- * 
- * IMPORTANT: All payloads are ONE-LINERS!
- * Browser DevTools console executes code when you press Enter.
- * Multi-line code would only execute the first line.
- * That's why all payloads are compressed into single lines (minified).
- * 
- * Common social engineering tactics:
- * - "Paste this to unlock premium features"
- * - "Fix your account by running this code"
- * - "Speed up your browser with this trick"
- * - "Win a prize by entering this in console"
- */
+// ⚠️ WARNING: These are MALICIOUS scripts for educational purposes only!
+
 
 // ============================================================
 // PAYLOAD #1: Simple Cookie Stealer
