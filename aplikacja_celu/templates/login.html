@@ -4,45 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PCYB Forum - Logowanie</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">PCYB Forum</div>
-        </div>
-    </div>
-
-    <div class="main-content">
-        <div class="login-card">
-            <div class="login-header">
-                <h2>Zaloguj się</h2>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo-section">
+                <h1 class="app-logo">PCYB Forum</h1>
+                <p class="tagline">Społeczność programistów i cybersecurity</p>
             </div>
             
-            <div class="login-form">
+            <div class="login-content">
+                <h2>Zaloguj się do swojego konta</h2>
+                
                 {% if error %}
-                    <div class="error">{{ error }}</div>
+                    <div class="error-message">{{ error }}</div>
                 {% endif %}
                 
-                <form method="post">
-                    <div class="form-group">
-                        <label for="username">Nazwa użytkownika:</label>
-                        <input type="text" id="username" name="username" placeholder="Wpisz swoją nazwę użytkownika" required>
+                <form method="post" class="login-form">
+                    <div class="input-group">
+                        <label for="username">Nazwa użytkownika</label>
+                        <input type="text" 
+                               id="username" 
+                               name="username" 
+                               placeholder="Wprowadź nazwę użytkownika" 
+                               required
+                               autocomplete="username">
                     </div>
                     
-                    <div class="form-group">
-                        <label for="password">Hasło:</label>
-                        <input type="password" id="password" name="password" placeholder="Wpisz swoje hasło" required>
+                    <div class="input-group">
+                        <label for="password">Hasło</label>
+                        <input type="password" 
+                               id="password" 
+                               name="password" 
+                               placeholder="Wprowadź hasło" 
+                               required
+                               autocomplete="current-password">
                     </div>
                     
-                    <button type="submit" class="login-btn">Zaloguj się</button>
+                    <button type="submit" class="signin-btn">Zaloguj się</button>
                 </form>
             </div>
         </div>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2025 PCYB Forum. Wszystkie prawa zastrzeżone. | <a href="#">Regulamin</a> | <a href="#">Prywatność</a></p>
     </div>
 </body>
 </html>
