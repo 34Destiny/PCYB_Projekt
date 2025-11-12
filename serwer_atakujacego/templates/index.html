@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attacker's Cookie Stealer - PCYB</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ATTACKER'S COOKIE STEALER</h1>
+        
+        <div class="stats">
+            <h2>Statistics</h2>
+            <p><span class="label">Total Stolen Cookies:</span> <span class="value">{{ total }}</span></p>
+            <p><span class="label">Server Running Since:</span> <span class="value">{{ server_start }}</span></p>
+            <button class="clear-btn" onclick="clearCookies()">Clear All</button>
+        </div>
+        
+        <h2>Intercepted Cookies</h2>
+        
+        {% for entry in cookies %}
+        <div class="cookie-entry">
+            <div class="timestamp">{{ entry.timestamp }}</div>
+            <div class="cookie-data">
+                <p><span class="label">Cookie:</span> <span class="value">{{ entry.cookie }}</span></p>
+                <p><span class="label">Source IP:</span> <span class="value">{{ entry.ip }}</span></p>
+                <p><span class="label">User-Agent:</span> <span class="value">{{ entry.user_agent }}</span></p>
+                <p><span class="label">Referer:</span> <span class="value">{{ entry.referer or 'N/A' }}</span></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
