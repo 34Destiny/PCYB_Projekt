@@ -1,5 +1,9 @@
 # PCYB - Browser Session Hijacking
 
+> [!CAUTION]
+> **Projekt wyłącznie do celów edukacyjnych!** </br>
+> **Używanie tych technik bez zgody jest nielegalne.**
+
 ## Spis Treści
 
 - [Opis Projektu](#opis-projektu)
@@ -31,11 +35,6 @@ Projekt demonstracyjny przedstawiający podatności **Cross-Site Scripting (XSS)
 
 1. **Aplikacja Celu** - Wrażliwe forum z podatnością XSS
 2. **Serwer Atakującego** - Panel odbierający skradzione ciasteczka
-
-
-> [!CAUTION]
-> **Projekt wyłącznie do celów edukacyjnych!** </br>
-> **Używanie tych technik bez zgody jest nielegalne.**
 
 ---
 
