@@ -1,5 +1,30 @@
 # PCYB - Browser Session Hijacking
 
+## Spis Treści
+
+- [Opis Projektu](#opis-projektu)
+- [Struktura Projektu](#struktura-projektu)
+- [Szczegółowy Opis Kluczowych Plików](#szczegółowy-opis-kluczowych-plików)
+  - [Konfiguracja Docker](#konfiguracja-docker)
+  - [Aplikacja Celu](#aplikacja-celu-aplikacja_celu)
+  - [Serwer Atakującego](#serwer-atakującego-serwer_atakujacego)
+  - [Payloady XSS](#payloady-xss-payload)
+- [Instalacja i Uruchomienie](#instalacja-i-uruchomienie)
+  - [Wymagania](#wymagania)
+  - [Uruchomienie](#uruchomienie)
+  - [Adresy](#adresy)
+  - [Loginy](#loginy)
+- [Scenariusze Demonstracyjne](#scenariusze-demonstracyjne)
+  - [Scenariusz 1: Reflected XSS (URL)](#scenariusz-1-reflected-xss-url)
+  - [Scenariusz 2: Stored XSS (Post)](#scenariusz-2-stored-xss-post)
+  - [Scenariusz 3: DevTools Console Attack](#scenariusz-3-devtools-console-attack)
+- [Jak Się Bronić?](#jak-się-bronić)
+  - [Dla Deweloperów](#dla-deweloperów)
+  - [Dla Użytkowników](#dla-użytkowników)
+- [Bibliografia](#bibliografia)
+
+---
+
 ## Opis Projektu
 
 Projekt demonstracyjny przedstawiający podatności **Cross-Site Scripting (XSS)** i techniki kradzieży ciasteczek sesyjnych (Session Hijacking). System składa się z dwóch aplikacji Flask działających w osobnych kontenerach (i sieciach) Docker:
