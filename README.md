@@ -145,7 +145,7 @@ Kolekcja payloadów do wstrzykiwania w parametr URL `?search=` (Reflected XSS):
 - "Click this link to verify your account" - fałszywa weryfikacja
 
 **Cel:** Reflected XSS przez parametr URL
-**Wektor ataku:** Wysłanie linku ofierze (phishing, media społecznościowe, email)
+**Wektor ataku:** Wysłanie linku ofierze (phishing, media społecznościowe, email, wysłanie linku w poście a forum (typu: zobacz jaki fajny post))
 
 ---
 
@@ -229,16 +229,17 @@ Payloady do wklejenia w posty na forum (Stored XSS):
 
 #### `payload/devtools_payloads.js`
 **Typ:** JavaScript (Payload Collection)  
-**Payloadów:** 11  
-**Linie kodu:** ~280  
+**Payloadów:** 11
 **Opis:**  
 Payloady do wklejenia w DevTools Console (Self-XSS wymagający interakcji ofiary):
 
 **Techniki Social Engineering:**
-1. **Simple Cookie Stealer** - "Paste this to unlock premium features!"  
+1. **Simple Cookie Stealer** 
+   - "Paste this to unlock premium features!"  
    - Ultra prosty, fake komunikat sukcesu z zielonym ✓
 
-2. **Obfuscated Stealer** - Zaciemnione nazwy zmiennych (`_0x1a2b`)  
+2. **Obfuscated Stealer** 
+   - Zaciemnione nazwy zmiennych (`_0x1a2b`)  
    - "Account verified successfully!" - fałszywa weryfikacja
 
 3. **Fake Security Check**
@@ -261,12 +262,12 @@ Payloady do wklejenia w DevTools Console (Self-XSS wymagający interakcji ofiary
    - "Your account requires immediate verification"
    - Po 1.5s: "✓ Account Verified Successfully!"
 
-7. **Session Monitor** (Advanced)  
+7. **Session Monitor**
    - Nie tylko kradnie obecną sesję, ale MONITORUJE zmiany co 5 sekund
    - Automatycznie wysyła nowe ciasteczka gdy się zmienią
    - "✓ Enhanced features loaded"
 
-8. **Image-based One-liner** (96 chars)  
+8. **Image-based One-liner**
    `new Image().src='...';console.log('✓ Fixed!');`  
    - Najkrótszy możliwy payload z fake komunikatem
 
@@ -276,11 +277,11 @@ Payloady do wklejenia w DevTools Console (Self-XSS wymagający interakcji ofiary
    - Użytkownik widzi tylko gibberish
    - Trudniejszy do wykrycia przez ofiarę
 
-10. **Ultra Obfuscated** (93 chars)  
+10. **Ultra Obfuscated** 
     - Nawet komunikat sukcesu jest obfuskowany
     - Maksymalne ukrycie intencji
 
-11. **Ultra Short** (74 chars)  
+11. **Ultra Short**
     - Absolutnie najkrótszy możliwy payload
     - Brak fake komunikatu, tylko kradzież
 
@@ -289,14 +290,17 @@ Payloady do wklejenia w DevTools Console (Self-XSS wymagający interakcji ofiary
     - "Detected common application error. Applying fix..."
     - "✓ Error Fixed! Please refresh the page"
 
-13. **XSS Worm Concept** (Zaawansowany)  
+13. **XSS Worm Concept**
     - Próbuje wstrzyknąć się do wszystkich textarea/input na stronie
     - Samopropagujący się payload (proof of concept)
     - Loguje liczbę znalezionych potencjalnych punktów wstrzyknięcia
 
+**Cel:** Self-XSS przez konsolę deweloperską
+**Wektor ataku:** Social engineering - nakłonienie ofiary do wklejenia kodu w DevTools (instrukcje na forach, filmach YouTube, fake poradniki "jak odblokować premium", fałszywe rozwiązania problemów technicznych)
+
 ---
 
-#### `payload/jsfuck.js`
+#### `payload/jsfuck.js - Ciekawostka` 
 **Typ:** JavaScript (Heavily Obfuscated)  
 **Opis:**  
 Demonstracja ekstremalnej obfuskacji używającej tylko 6 znaków: `[]()!+`
