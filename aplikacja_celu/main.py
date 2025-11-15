@@ -3,7 +3,6 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Users database (hardcoded)
 USERS = {
     "admin": {"password": "admin", "session_token": "admin_session_token_pcyb"},
     "user": {"password": "user", "session_token": "user_session_token_pcyb"}
@@ -11,7 +10,6 @@ USERS = {
 
 SESSION_COOKIE_NAME = "PCYB_forum_session"
 
-# Posts storage (in-memory)
 posts = []
 
 @app.route('/', methods=['GET', 'POST'])
@@ -48,7 +46,6 @@ def protected():
                 break
     
     if current_user:
-        # Reflected XSS vulnerability - reads search parameter from URL
         search_query = request.args.get('search', '')
         
         return render_template('protected.html', 

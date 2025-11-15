@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="forum-layout">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-content">
                 <div class="logo-section">
@@ -46,13 +45,11 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
             <div class="timeline-header">
                 <h2>Forum</h2>
             </div>
 
-            <!-- Post Box -->
             <div class="post-box">
                 <div class="post-box-content">
                     <div class="user-avatar">{{ username[0].upper() }}</div>
@@ -65,7 +62,6 @@
                 </div>
             </div>
 
-            <!-- Search Results (XSS Vulnerability) -->
             {% if search_query %}
             <div class="search-results-main">
                 <h3>Wyniki wyszukiwania dla: {{ search_query | safe }}</h3>
@@ -73,7 +69,6 @@
             </div>
             {% endif %}
 
-            <!-- Timeline -->
             <div class="timeline">
                 {% if posts %}
                     {% for post in posts %}
@@ -104,7 +99,6 @@
             </div>
         </main>
 
-        <!-- Right Sidebar -->
         <aside class="right-sidebar">
             <div class="search-box">
                 <form method="get" action="/protected">
