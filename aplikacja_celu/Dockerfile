@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 5009
 
-CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5009", "main:app"]
+CMD ["python", "main.py"]
