@@ -375,6 +375,27 @@ body {
     color: #657786;
 }
 
+.search-results-main {
+    background: #ffffff;
+    border: 1px solid #e1e8ed;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.search-results-main h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #14171a;
+    margin: 0 0 10px 0;
+}
+
+.search-results-main p {
+    font-size: 15px;
+    color: #657786;
+    margin: 0;
+}
+
 .trending-section,
 .suggestions-section {
     background: #ffffff;

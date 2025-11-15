@@ -48,10 +48,14 @@ def protected():
                 break
     
     if current_user:
+        # Reflected XSS vulnerability - reads search parameter from URL
+        search_query = request.args.get('search', '')
+        
         return render_template('protected.html', 
                              username=current_user, 
                              posts=reversed(posts),
-                             session_cookie=f"{SESSION_COOKIE_NAME}={session_cookie}")
+                             session_cookie=f"{SESSION_COOKIE_NAME}={session_cookie}",
+                             search_query=search_query)
     return redirect('/')
 
 @app.route('/logout')

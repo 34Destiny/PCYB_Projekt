@@ -65,6 +65,14 @@
                 </div>
             </div>
 
+            <!-- Search Results (XSS Vulnerability) -->
+            {% if search_query %}
+            <div class="search-results-main">
+                <h3>Wyniki wyszukiwania dla: {{ search_query | safe }}</h3>
+                <p>Nie znaleziono postów pasujących do: "{{ search_query | safe }}"</p>
+            </div>
+            {% endif %}
+
             <!-- Timeline -->
             <div class="timeline">
                 {% if posts %}
@@ -99,7 +107,9 @@
         <!-- Right Sidebar -->
         <aside class="right-sidebar">
             <div class="search-box">
-                <input type="text" placeholder="Szukaj w PCYB Forum" />
+                <form method="get" action="/protected">
+                    <input type="text" name="search" placeholder="Szukaj w PCYB Forum" value="{{ search_query }}" />
+                </form>
             </div>
 
             <div class="trending-section">
