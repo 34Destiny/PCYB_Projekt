@@ -168,7 +168,7 @@ Kolekcja payloadów do wstrzykiwania w parametr URL `?search=` (Reflected XSS):
 - "Check out this cool feature!" - przyciąganie uwagi
 - "Click this link to verify your account" - fałszywa weryfikacja
 
-**Cel:** Reflected XSS przez parametr URL
+**Cel:** Reflected XSS przez parametr URL </br>
 **Wektor ataku:** Wysłanie linku ofierze (phishing, media społecznościowe, email, wysłanie linku w poście a forum (typu: zobacz jaki fajny post))
 
 ---
@@ -246,7 +246,7 @@ Payloady do wklejenia w posty na forum (Stored XSS):
 - "System test..." - fałszywy komunikat administracyjny
 - "FAQ" / "Survey" - interaktywne elementy wzbudzające zaufanie
 
-**Cel:** Stored XSS w treści postów
+**Cel:** Stored XSS w treści postów </br>
 **Wektor ataku:** Każdy użytkownik przeglądający forum zostaje zaatakowany automatycznie
 
 ---
@@ -319,7 +319,7 @@ Payloady do wklejenia w DevTools Console (Self-XSS wymagający interakcji ofiary
     - Samopropagujący się payload (proof of concept)
     - Loguje liczbę znalezionych potencjalnych punktów wstrzyknięcia
 
-**Cel:** Self-XSS przez konsolę deweloperską
+**Cel:** Self-XSS przez konsolę deweloperską </br>
 **Wektor ataku:** Social engineering - nakłonienie ofiary do wklejenia kodu w DevTools (instrukcje na forach, filmach YouTube, fake poradniki "jak odblokować premium", fałszywe rozwiązania problemów technicznych)
 
 ---
