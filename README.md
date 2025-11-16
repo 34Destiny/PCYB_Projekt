@@ -347,7 +347,7 @@ Demonstracja ekstremalnej obfuskacji używającej tylko 6 znaków: `[]()!+`
 **Uwaga:**  
 Pełny payload jest zbyt długi aby był praktyczny, ale demonstruje możliwości zaciemnienia kodu JavaScript.
 
-**Pełny działający payload**
+**Działający payload:**
 https://github.com/34Destiny/PCYB_Projekt/blob/main/payload/jsfuck.js
 
 **Link do kodera:**
